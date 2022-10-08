@@ -1,5 +1,5 @@
 ## Create infrastructure
-In this deployment i am creating aws eks cluster. there is one node group and it has 2 Amazon Linux nodes.
+In this section i am creating aws eks cluster. there is one node group and it has 2 Amazon Linux nodes.
 
 ```sh
 cd terraform-aws-eks
