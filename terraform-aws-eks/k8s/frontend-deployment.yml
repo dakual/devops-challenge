@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redacre-frontend
+spec:
+  selector:
+    matchLabels:
+      app: redacre-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redacre-frontend
+    spec:
+      containers:
+      - name: redacre-frontend
+        image: public.ecr.aws/m2a7z1o1/frontend:latest 
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: redacre-frontend
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: LoadBalancer

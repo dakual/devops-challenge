@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  backend:
+    container_name: backend
+    image: backend
+    build:
+      context: .
+      dockerfile: Dockerfile.backend.yml
+  frontend:
+    container_name: frontend
+    image: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend.yml
+    ports:
+      - "8080:80"

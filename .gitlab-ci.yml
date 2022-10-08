@@ -1,0 +1,73 @@
+stages:
+  - build
+  - deploy
+
+backend_build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+  script:
+    - echo "Starting Backend to build"
+    - docker build -t kurtay/backend:latest .
+    - docker push kurtay/backend:latest 
+  when: manual
+  only:
+    - main
+  tags:
+    - dev
+
+frontend_build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+  script:
+    - echo "Starting Frontend to build"
+    - docker build -t kurtay/frontend:latest .
+    - docker push kurtay/frontend:latest
+  when: manual
+  only:
+    - main
+  tags:
+    - dev
+
+backend_deploy:
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
+  stage: deploy
+  script:
+    - echo "Starting Banckend to deploy"
+    - kubectl config get-contexts
+    - kubectl config use-context dakual/redacre:dev
+    - sed -i "s|<IMAGE>|${IMAGE_NAME}|g" k8s/backend-deployment.yaml
+    - sed -i "s|<VERSION>|${IMAGE_TAG}|g" k8s/backend-deployment.yaml
+    - kubectl apply -f k8s/backend-deployment.yaml --record
+  when: manual
+  only:
+    - main
+  tags:
+    - dev
+
+frontend_deploy:
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
+  stage: deploy
+  script:
+    - echo "Starting Frontend to deploy"
+    - kubectl config get-contexts
+    - kubectl config use-context dakual/redacre:dev
+    - sed -i "s|<IMAGE>|${IMAGE_NAME}|g" k8s/frontend-deployment.yaml
+    - sed -i "s|<VERSION>|${IMAGE_TAG}|g" k8s/frontend-deployment.yaml
+    - kubectl apply -f k8s/frontend-deployment.yaml --record
+  when: manual
+  only:
+    - main
+  tags:
+    - dev

@@ -1,0 +1,15 @@
+FROM node:16-slim as build
+
+WORKDIR /app
+
+COPY ./sys-stats ./
+
+# The React container should also perform npm build every time it is built.
+RUN yarn install
+RUN yarn build
+
+FROM nginx:stable-alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+COPY nginx.default.conf /etc/nginx/conf.d/default.conf
