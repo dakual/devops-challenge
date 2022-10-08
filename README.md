@@ -1,5 +1,11 @@
-## Deployment URL
-http://ac327e60602884e26b5233125151693a-1161107545.eu-central-1.elb.amazonaws.com/
+## In this chalange i did dockerize and deploy your application. what i did:
+- dockerize backend python application
+- dockerize frontend react application
+- creating docker compose
+- upload docker images to aws ecr and docker hup.
+- in the "terraform-aws-ecs" i create amazon ecs infrastructure with terraform and deploy application.
+- in the "terraform-aws-eks" i create amazon eks infrastructure with terraform and deploy application as you said seperated pods.
+- in the "minikube" i prepare kubernetes deployment yaml's
 
 ### Preparing development enviroment
 ```sh
