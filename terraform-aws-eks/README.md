@@ -31,3 +31,4 @@ on the kubectl output "EXTERNAL-IP" is our endpoint anddress
 ```sh
 http://ac327e60602884e26b5233125151693a-1161107545.eu-central-1.elb.amazonaws.com/
 ```
+> Not: i destroy infrastructure after 2 days later. if you need i can deploy again.
