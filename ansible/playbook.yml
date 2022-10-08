@@ -1,0 +1,80 @@
+---
+- hosts: ec2
+  become: true
+  vars:
+    backend_image: kurtay/backend:latest
+    backend_container_name: backend
+    frontend_image: kurtay/frontend:latest
+    frontend_container_name: frontend
+
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Pull redacre backend docker image
+      community.docker.docker_image:
+        name: "{{ backend_image }}"
+        source: pull
+
+    - name: Pull redacre frontend docker image
+      community.docker.docker_image:
+        name: "{{ frontend_image }}"
+        source: pull
+
+    - name: Create a network
+      docker_network:
+        name: redacre
+
+    - name: Create and run backend container
+      community.docker.docker_container:
+        name: "{{ backend_container_name }}"
+        image: "{{ backend_image }}"
+        networks:
+          - name: redacre
+        state: started
+
+    - name: Create and run frontend container
+      community.docker.docker_container:
+        name: "{{ frontend_container_name }}"
+        image: "{{ frontend_image }}"
+        networks:
+          - name: redacre
+        ports:
+          - "80:80"
+        state: started
