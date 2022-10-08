@@ -3,6 +3,7 @@
 - dockerize frontend react application
 - creating docker compose
 - upload docker images to aws ecr and docker hup.
+- create kubernetes deploymenet and service yaml files.
 - in the "terraform-aws-ecs" i create amazon ecs infrastructure with terraform and deploy application.
 - in the "terraform-aws-eks" i create amazon eks infrastructure with terraform and deploy application as you said seperated pods.
 - in the "minikube" i prepare kubernetes deployment yaml's
