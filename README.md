@@ -1,4 +1,4 @@
-## In this chalange i did dockerize and deploy your application. what i did:
+## In this challenge i did dockerize and deploy your application. what i did:
 - dockerize backend python application
 - dockerize frontend react application
 - creating docker compose
