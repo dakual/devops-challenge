@@ -27,8 +27,6 @@ aws ec2 terminate-instances --instance-ids i-02fd91a672fb94864
 ssh -i ~/.aws/pems/mykey.pem admin@18.192.244.14
 ```
 
-ssh-copy-id -i ~/.aws/pems/mykey.pem  ansible@18.192.244.14
-
 ### prepare ec2 instance for become ansible node
 ```sh
 # add new ansible user
