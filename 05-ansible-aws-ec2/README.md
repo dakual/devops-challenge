@@ -38,7 +38,7 @@ sudo nano /etc/ssh/sshd_config
 
 # give sudo privileges to ansible user
 sudo touch /etc/sudoers.d/ansible
-"postgres ALL=(ALL) NOPASSWD:ALL" # <--- add into ansibe file
+"ansible ALL=(ALL) NOPASSWD:ALL" # <--- add into ansibe file
 
 # restart ssh
 sudo service ssh restart
