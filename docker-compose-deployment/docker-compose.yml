@@ -1,0 +1,10 @@
+version: "3.1"
+services:
+  backend:
+    container_name: backend
+    image: kurtay/backend:latest 
+  frontend:
+    container_name: frontend
+    image: kurtay/frontend:latest 
+    ports:
+      - "80:80"
