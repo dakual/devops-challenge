@@ -14,7 +14,7 @@ terraform apply --auto-approve
 terraform destroy --auto-approve
 ```
 
-### Add cluster to kubectl config file
+### Add aws eks cluster to kubectl config file
 ```sh
 aws eks --region eu-central-1 update-kubeconfig --name redacre-cluster
 ```
