@@ -1,5 +1,5 @@
 ## DEPLOY THE APPLICATION TO AWS ECS USING DOCKER COMPOSE
-To run it from your local workstation, first we need to set the docker context to use the ECS to run the docker commands.
+To run it from your local pc, first we need to set the docker context to use the ECS to run the docker commands.
 
 ### Create a Docker Context for Amazon ECS
 ```sh
