@@ -12,7 +12,11 @@ docker context ls # i am checking, everythings are ok
 docker context use myecs # after i select my aws ecs context
 ```
 
-and below command will create a ECS cluster with all other components which are required for the application like.
+### Magic
+```sh
+docker compose up
+```
+This command will create a ECS cluster with all other components which are required for the application like.
 
 - ECS Cluster
 - VPC & Security Groups
@@ -21,11 +25,6 @@ and below command will create a ECS cluster with all other components which are 
 - Service 
 - Load Balancer
 - Target Groups
-
-### Magic
-```sh
-docker compose up
-```
 
 Now everythings are ready.
 
