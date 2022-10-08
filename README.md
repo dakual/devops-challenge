@@ -6,7 +6,9 @@
 - create kubernetes deploymenet and service yaml files.
 - in the "terraform-aws-ecs" i create amazon ecs infrastructure with terraform and deploy application.
 - in the "terraform-aws-eks" i create amazon eks infrastructure with terraform and deploy application as you said seperated pods.
-- in the "minikube" i prepare kubernetes deployment yaml's
+- in the "terraform-deployment" i did k8s deployment with terraform.
+- in the "minikube" i prepare kubernetes deployment yaml's.
+- creating gitlab ci and cd fipeline. it is building and deploying application on the kubernetes cluster. but if we want to use gitlab-ci we need to create a runner. it can be docker on our local machine. after we need to register this runner to gitlab. after for k8s deploymenet we need to connect our cluster to gitlab. we can do this manuelly or  using gitlab k8s agent. after we need to .gitlab folder for k8s agent permission. after .gitlab-ci.yml pipeline.
 
 ### Preparing development enviroment
 ```sh
