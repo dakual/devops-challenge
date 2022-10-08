@@ -1,6 +1,7 @@
 ## In this challenge i will use ansible for deploy on aws ec2
 
-### Creating ec2 instance. i will use my my default sc group, subnet and my ssh key for fast deploymenet. 
+### Creating ec2 instance. 
+i will use my my default sc group, subnet and my ssh key for fast deploymenet. 
 ```sh
 aws ec2 run-instances \
   --image-id ami-0a5b5c0ea66ec560d \
